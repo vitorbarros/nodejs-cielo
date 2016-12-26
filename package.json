@@ -1,0 +1,24 @@
+{
+  "name": "node-cielo",
+  "version": "1.0.0",
+  "description": "Integração do nodejs com a API da cielo 3.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorbarros/node-cielo.git"
+  },
+  "keywords": [
+    "CIELO",
+    "NODE",
+    "JS"
+  ],
+  "author": "Vitor Barros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitorbarros/node-cielo/issues"
+  },
+  "homepage": "https://github.com/vitorbarros/node-cielo#readme"
+}
