@@ -1,52 +1,43 @@
 /**
  * @desc Classe resonsável pelas configurações inciais do módulo de integração com a Cielo
  * @author Vitor Barros
- * @param configFilePath
  * @constructor
  */
+var OnBootstrap = function () {
 
-var fs = require('fs');
-
-var OnBootstrap = function (configFilePath) {
-
-    //verificando se o arquivo de configuração da Cielo existe
-    fs.access(configFilePath, function (err) {
-        if (err) {
-            throw "File '" + configFilePath + "' dos not exists"
-        }
-    });
-
-    var configFile = require(configFilePath);
+    var credentials = {};
     var preparedObject = {};
 
 };
 
+OnBootstrap.prototype.setCredentials = function (_credentials) {
+    credentials = _credentials;
+};
+
 /**
- * @desc Método que retorna as configurações do módulo
+ * @desc Método que retorna as credenciais do módulo
  * @returns {*}
  */
-OnBootstrap.prototype.getConfig = function () {
-    return configFile;
+OnBootstrap.prototype.getCredentials = function () {
+    return credentials;
 };
 
 /**
  *
  * @param service
- * @param method
  * @param data
  * @returns {OnBootstrap}
  */
-OnBootstrap.prototype.prepare = function (service, method, data) {
+OnBootstrap.prototype.prepare = function (service, data) {
 
-    method = method.toLowerCase();
-    if (method !== 'get' && method !== 'post') {
-        throw "This API supports only POST and GET as a HTTP methods"
+    if (!credentials.baseUrl || !credentials.MerchantId || !credentials.MerchantKey) {
+        throw "baseUrl, MerchantId, MerchantKey is required";
     }
 
     preparedObject = {
         service: service,
-        method: method,
-        data: data
+        data: data,
+        credentials: OnBootstrap.prototype.getCredentials()
     };
 
     return this;
@@ -55,26 +46,16 @@ OnBootstrap.prototype.prepare = function (service, method, data) {
 /**
  * @desc Método que faz a requisição para a CIELO
  */
-OnBootstrap.prototype.request = function () {
+OnBootstrap.prototype.request = function (_callback) {
 
-    if (!preparedObject.service || !preparedObject.method) {
-        throw "Please call 'prepared' method before request";
+    if (!preparedObject.service || !preparedObject.credentials) {
+        throw "Please call 'prepare' method before request";
     }
-
-    //verificando se o serviço está disponível
-    fs.access('services/' + preparedObject.service + ".js", function (err) {
-        if (err) {
-            throw "Service '" + preparedObject.service + "' dos not exists"
-        }
-    });
 
     var module = require('./services/' + preparedObject.service);
+    var mod = new  module();
 
-    if(!module.hasOwnProperty('call')){
-        throw "Method 'call' must be implemented"
-    }
-
-    return module.call(preparedObject);
+    mod.call(preparedObject, _callback)
 };
 
 
