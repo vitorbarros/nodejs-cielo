@@ -1,14 +1,14 @@
 /**
- * @desc Método que faz uma cobraça simpes com a token do cartão de crédito
+ * @desc Método que faz uma cobraça simpes com cartão de débito
  * @author Vitor Barros
  * @constructor
  */
 
-var creditCardSimplePaymentWithCardToken = function () {
+var debitCardSimplePayment = function () {
 
 };
 
-creditCardSimplePaymentWithCardToken.prototype.call = function (preparedObject, callback) {
+debitCardSimplePayment.prototype.call = function (preparedObject, callback) {
 
     var http = preparedObject.credentials.ssl ? require('https') : require('http');
 
@@ -42,4 +42,4 @@ creditCardSimplePaymentWithCardToken.prototype.call = function (preparedObject, 
     req.end();
 };
 
-module.exports = creditCardSimplePaymentWithCardToken;
+module.exports = debitCardSimplePayment;
