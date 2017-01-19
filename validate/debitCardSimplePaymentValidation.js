@@ -28,8 +28,8 @@ debitCardSimplePaymentValidation.prototype.validate = function (preparedObject) 
     }
 
     //validando as indformações de pagamento
-    if (!preparedObject.Payment.Amount || !preparedObject.Payment.Installments || !preparedObject.Payment.SoftDescriptor) {
-        throw "Amount, Installments and SoftDescriptor are required";
+    if (!preparedObject.Payment.Amount || !preparedObject.Payment.Installments || !preparedObject.Payment.SoftDescriptor || !preparedObject.Payment.ReturnUrl) {
+        throw "Amount, Installments, SoftDescriptor and ReturnUrl are required";
     }
 
     //validando o cartão de crédito
