@@ -52,10 +52,22 @@ OnBootstrap.prototype.request = function (_callback) {
         throw "Please call 'prepare' method before request";
     }
 
+    //chamando o módulo
     var module = require('./services/' + preparedObject.service);
-    var mod = new  module();
+    var mod = new module();
 
-    mod.call(preparedObject, _callback)
+    //chamando a validação do módulo
+    var val = require('./validate/' + preparedObject.service + 'Validation');
+    var validation = new val();
+
+    try {
+
+        validation.validate(preparedObject.data);
+        mod.call(preparedObject, _callback);
+
+    } catch (e) {
+        throw e;
+    }
 };
 
 
