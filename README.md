@@ -1,4 +1,4 @@
-# nodejs-cielo 1.1.0
+# nodejs-cielo 1.1.1
 
 Integração com a API de pagamento da CIELO 3.0
 
