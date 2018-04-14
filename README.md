@@ -1,4 +1,4 @@
-# node-cielo.js 1.0.0
+# nodejs-cielo 1.0.0
 
 Integração com a API de pagamento da CIELO 3.0
 
@@ -11,7 +11,7 @@ Integração com a API de pagamento da CIELO 3.0
  ## Instalação
  
  ```
-npm install node-cielo
+npm install nodejs-cielo
 ```
 
 ## Arquivo de configuração
