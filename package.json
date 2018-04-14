@@ -1,5 +1,5 @@
 {
-  "name": "node-cielo",
+  "name": "nodejs-cielo",
   "version": "1.0.0",
   "description": "Integração do nodejs com a API da cielo 3.0",
   "main": "index.js",
