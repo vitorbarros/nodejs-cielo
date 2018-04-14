@@ -10,36 +10,45 @@ var creditCardSimplePaymentWithCardToken = function () {
 
 creditCardSimplePaymentWithCardToken.prototype.call = function (preparedObject, callback) {
 
-    var http = preparedObject.credentials.ssl ? require('https') : require('http');
-
     var options = {
-        host: preparedObject.credentials.baseUrl,
-        path: '/1/sales',
+        uri: 'https://' + preparedObject.credentials.baseUrl + '/1/sales',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'MerchantId': preparedObject.credentials.MerchantId,
             'MerchantKey': preparedObject.credentials.MerchantKey
-        }
+        },
+        body: preparedObject.data,
+        json: true
     };
 
-    var req = http.request(options, function (res) {
+    var request = require('request-promise');
 
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            callback(chunk, null);
+    request(options)
+        .then(function (response) {
+
+            var statusTransaction = require('./../status/status');
+            var transaction = new statusTransaction();
+
+            var message = null;
+
+            if (response.Payment) {
+                message = transaction.getStatusTransaction(response.Payment.Status, response.Payment.ReturnCode);
+            } else {
+                message = transaction.getStatusTransaction(3, "01");
+            }
+
+            if (message) {
+                callback(null, {
+                    message: message
+                })
+            } else {
+                callback(response, null);
+            }
+        })
+        .catch(function (err) {
+            callback(err, null);
         });
-
-    });
-
-    req.on('error', function (e) {
-        callback(null, e);
-    });
-
-    //transformando o objeto
-    req.write(JSON.stringify(preparedObject.data));
-
-    req.end();
 };
 
 module.exports = creditCardSimplePaymentWithCardToken;
