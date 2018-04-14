@@ -13,6 +13,8 @@ Integração com a API de pagamento da CIELO 3.0
  ```
 npm install nodejs-cielo
 ```
+[![NPM Stats](https://nodei.co/npm/nodejs-cielo.png?downloads=true)](https://www.npmjs.com/package/nodejs-cielo)
+
 
 ## Arquivo de configuração
 
