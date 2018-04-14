@@ -16,7 +16,7 @@
     "JS"
   ],
   "author": "Vitor Barros",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vitorbarros/node-cielo/issues"
   },
