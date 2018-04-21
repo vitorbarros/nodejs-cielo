@@ -191,4 +191,4 @@ https://developercielo.github.io/manual/cielo-ecommerce#meios-de-pagamento
 
 ## LICENSE
 
-You can find a copy of this license in [LICENSE.md](LICENSE.md).
+[LICENSE.md](LICENSE.md).
