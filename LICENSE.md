@@ -1,6 +1,7 @@
-The MIT License (MIT)
+Copyright 2018-present Vitor Barros.
+http://vitorbarros.github.io/
 
-Copyright (c) 2018 Vitor Barros
+The MIT License (MIT)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
