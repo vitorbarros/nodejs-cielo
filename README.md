@@ -192,3 +192,5 @@ https://developercielo.github.io/manual/cielo-ecommerce#meios-de-pagamento
 ## LICENSE
 
 [LICENSE.md](LICENSE.md).
+
+[![](https://codescene.io/projects/3480/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/3480/jobs/latest-successful/results)
